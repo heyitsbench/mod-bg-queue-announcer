@@ -462,7 +462,7 @@ public:
         if (bf->GetTypeId() != BATTLEFIELD_WG)
             return;
 
-        ChatHandler(nullptr).SendWorldText(ANNOUNCER_STRING_WINTERGRASP_STARTED_WORLD);
+        ChatHandler(nullptr).SendWorldTextOptional(ANNOUNCER_STRING_WINTERGRASP_STARTED_WORLD, PVP_ANNOUNCER_FLAG_DISABLE_PVP_START);
     }
 };
 

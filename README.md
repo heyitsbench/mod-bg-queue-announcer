@@ -81,6 +81,17 @@ type is unchanged (`.settings announcer bg on`), and the opt-out bits keep the v
 (1, 2 and 8, alongside the core-owned autobroadcast bit 4) in the same `character_settings` index, so
 existing player preferences carry over untouched.
 
+## Differences from the core
+
+Behaviour is otherwise identical to what the core did, with one deliberate exception:
+
+- **Wintergrasp start announcements now honour the player opt-out**
+  ([azerothcore#26147](https://github.com/azerothcore/azerothcore-wotlk/issues/26147)). The core sent
+  this line with plain `SendWorldText`, which bypasses `SETTING_ANNOUNCER_FLAGS` altogether, so
+  `.settings announcer pvpall off` never hid it. The module sends it with `SendWorldTextOptional`
+  under `PVP_ANNOUNCER_FLAG_DISABLE_PVP_START`, so both `pvpstart` and `pvpall` suppress it, matching
+  every other PvP announcement.
+
 ## Installation
 
 ```
